@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FastAPI Frontend Example</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#abc-btn").click(function () {
+                    $.get("/").done(function (data) {
+                        $("#abc-result").html(JSON.stringify(data));
+                    });
+                });
+
+                $("#unpublished-btn").click(function () {
+                    $.get("/blog/unpublished").done(function (data) {
+                        $("#unpublished-result").html(JSON.stringify(data));
+                    });
+                });
+
+                $("#show-btn").click(function () {
+                    var id = $("#show-id").val();
+                    $.get("/blog/" + id).done(function (data) {
+                        $("#show-result").html(JSON.stringify(data));
+                    });
+                });
+
+                $("#comments-btn").click(function () {
+                    var id = $("#comments-id").val();
+                    $.get("/blog/" + id + "/comments").done(function (data) {
+                        $("#comments-result").html(JSON.stringify(data));
+                    });
+                });
+
+                $("#about-btn").click(function () {
+                    $.get("/about").done(function (data) {
+                        $("#about-result").html(JSON.stringify(data));
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>FastAPI Frontend Example</h1>
+
+        <h2>Endpoint: /</h2>
+        <button id="abc-btn">Get Data</button>
+        <p id="abc-result"></p>
+
+        <h2>Endpoint: /blog/unpublished</h2>
+        <button id="unpublished-btn">Get Data</button>
+        <p id="unpublished-result"></p>
+
+        <h2>Endpoint: /blog/{id}</h2>
+        <label for="show-id">ID:</label>
+        <input type="number" id="show-id" />
+        <button id="show-btn">Get Data</button>
+        <p id="show-result"></p>
+
+        <h2>Endpoint: /blog/{id}/comments</h2>
+        <label for="comments-id">ID:</label>
+        <input type="number" id="comments-id" />
+        <button id="comments-btn">Get Data</button>
+        <p id="comments-result"></p>
+
+        <h2>Endpoint: /about</h2>
+        <button id="about-btn">Get Data</button>
+        <p id="about-result"></p>
+    </body>
+</html>
