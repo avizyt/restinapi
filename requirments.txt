@@ -1,1 +1,7 @@
-fastapi[all]
+fastapi
+
+uvicorn
+
+sqlalchemy
+
+passlib
